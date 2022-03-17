@@ -1,6 +1,6 @@
-{
+{   
     "integrationFolder": "./testcases",
-    "testFiles": "**.spec.ts",
+    "testFiles": "**/*.spec.ts",
     "viewportWidth": 1920,
     "viewportHeight": 1080
 }

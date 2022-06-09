@@ -76,4 +76,12 @@ export default class SettingsPagePo extends CruResource {
         new LabeledSelectPo('section .labeled-select.hoverable', `:contains("Type")`).select(type);
         new LabeledInputPo('.labeled-input', `:contains("Endpoint")`).input(endpoint);
     }
+
+    enableVLAN(nic: string) {
+        this.goTo();
+        this.checkIsCurrentPage();
+        this.clickMenu('vlan', 'Edit Setting', 'vlan', HCI.CLUSTER_NETWORK);
+        this.openVlan(nic);
+        this.update('vlan', HCI.CLUSTER_NETWORK);
+    }
 }

@@ -3,6 +3,10 @@ export class Constants {
     public timeout = { timeout: 10000, maxTimeout: 60000, uploadTimeout: 300000, downloadTimeout: 120000  };
     public username = Cypress.env("username");
     public password = Cypress.env("password");
+    public rancherUrl = Cypress.env("rancherUrl");
+    public rancher_user = Cypress.env("rancher_user");
+    public rancher_password = Cypress.env("rancher_password");
+    public vagrant_pxe_path = Cypress.env("vagrant_pxe_path");
     public setupUrl = '/auth/setup/';
     public loginUrl = '/auth/login/';
     public dashboardUrl = '/c/local/harvester/harvesterhci.io.dashboard';
@@ -14,4 +18,5 @@ export class Constants {
     public settingBaseUrl = '/c/local/harvester/harvesterhci.io.setting';
     public volumePage = '/c/local/harvester/harvesterhci.io.volume';
     public imagePage = '/c/local/harvester/harvesterhci.io.virtualmachineimage';
+    public virtualManagePage = '/c/local/harvesterManager/harvesterhci.io.management.cluster';
 }

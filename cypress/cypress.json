@@ -15,7 +15,8 @@
       "networks/*.ts",
       "virtualmachiens/*.ts",
       "backups/*.ts",
-      "VM settings/*.ts"
+      "VM settings/*.ts",
+      "rancher/*.ts"
     ],
     "viewportWidth": 1920,
     "viewportHeight": 1080,
@@ -26,8 +27,8 @@
     "env": {
         "NODE_ENV": "production",
         "username": "admin",
-        "password": "admin",
-        "baseUrl": "https://online-server",
+        "password": "passwdpasswd",
+        "baseUrl": "https://192.168.0.131",
         "host": {
           "name": "",
           "disks": [{

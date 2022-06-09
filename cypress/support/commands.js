@@ -47,3 +47,16 @@ Cypress.Commands.overwrite('visit', (originalFn, url = '', options) => {
 
   return originalFn(url, options)
 })
+
+Cypress.Commands.add('enableNetwork', () => {
+  settings.checkIsCurrentPage();
+  settings.clickMenu('vlan', 'Edit Setting', 'vlan', HCI.CLUSTER_NETWORK);
+  settings.openVlan('harvester-mgmt');
+  settings.update('vlan', HCI.CLUSTER_NETWORK);
+})
+
+Cypress.Commands.add('forceVisit', url => {
+  cy.window().then(win => {
+      return win.open(url, '_self');
+  });
+});

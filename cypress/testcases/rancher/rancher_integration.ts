@@ -16,6 +16,7 @@ const network = new NetworkPage();
 let mainDomainUrl = '';
 let crossDomainUrl = '';
 
+
 var registrationURL
 
 /**
@@ -31,13 +32,12 @@ var registrationURL
  * 4. User should not be able to edit the URL
  * 5. User should be able to create a new image with same name.
  */
-describe('Rancher Integration Test', () => {
+describe('Rancher Integration Test', function() {
     // const IMAGE_NAME = 'focal-server-cloudimg-amd64';
     // const IMAGE_URL = 'https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img';
 
     const IMAGE_NAME = 'opensuseleap';
     const IMAGE_URL = 'http://download.opensuse.org/repositories/Cloud:/Images:/Leap_15.3/images/openSUSE-Leap-15.3.x86_64-NoCloud.qcow2';
-    
 
     const value = {
         name: IMAGE_NAME,
@@ -78,16 +78,19 @@ describe('Rancher Integration Test', () => {
 
 
 
-    it.only('Rancher import Harvester', { baseUrl: constants.rancherUrl}, function () {
+    it.only('Rancher import Harvester', { baseUrl: constants.rancherUrl}, () => {
         // cy.login();
         cy.visit('/');
 
         //First time -> firstTimeLogin(), afterward -> login()
         rancher.rancherLogin();
-        
-        
-        let rURL = rancher.importHarvester();
-        console.log('------', rURL);
+        rancher.importHarvester().then((el) => {
+            let copyImportUrl = el.text();
+            console.log('get 到的', copyImportUrl)
+            cy.task('setMyUniqueId', copyImportUrl)
+        }).as('importCluster');
+
+        console.log('---ddd', window)
 
         // cy.get('.copy').invoke('text').then((text) => {
         //     registrationURL = text;
@@ -100,8 +103,6 @@ describe('Rancher Integration Test', () => {
         //     // cy.wrap(rURL).as('rURL');
         //     // cy.log(text)
         // });
-        
-
     });
 
     // it.only('share alais', function() {
@@ -112,23 +113,19 @@ describe('Rancher Integration Test', () => {
     //     // cy.get(this.rURL).should('contain', '192.168.0.131')
     // });
 
-
-
-    it.only('Harvester import Rancher', function() {
+    it.only('Harvester import Rancher', () => {
         cy.login();
-        cy.get('h6').click();
-        cy.get(':nth-child(2) > .list-unstyled > :nth-child(6) > a > .label').click();
-        cy.get('#cluster-registration-url > .btn').click();
-        cy.get('li > span').click();
-        
-
+        // cy.get('h6').click();
+        // cy.get(':nth-child(2) > .list-unstyled > :nth-child(6) > a > .label').click();
+        // cy.get('#cluster-registration-url > .btn').click();
+        // cy.get('li > span').click();
+        cy.task('getMyUniqueId').then((myUniqueId) => {
+            console.log('----- harvester testUrl', myUniqueId)
+        })
         // cy.task('getMyUniqueId').then((myUniqueId) => {
         //    cy.log('${myUniqueId}');
         // });
-        
     });
-
-
 });
 
 

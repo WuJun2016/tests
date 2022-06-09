@@ -4,7 +4,7 @@ const fs = require("fs");
 const yaml = require('js-yaml');
 const { isFileExist, findFiles } = require('cy-verify-downloads');
 const AdmZip = require("adm-zip");
-
+let myUniqueId = {};
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -71,7 +71,14 @@ module.exports = (on, config) => {
           resolve(e.message)
         }
       })
-    }
+    },
+    setMyUniqueId: (val) => {
+      return (myUniqueId = val);
+    },
+
+    getMyUniqueId: () => {
+      return myUniqueId;
+    },
   })
 
   return config;

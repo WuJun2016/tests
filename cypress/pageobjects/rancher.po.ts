@@ -108,24 +108,24 @@ export class rancherPage {
         cy.get(this.home_page_virtualManagement).should('contain', 'Virtualization Management').click();
         cy.visit(constants.virtualManagePage)
         cy.get(this.virtual_page_importButton).should('contain', 'Import Existing').click();
-        cy.get(this.virtual_page_clusterName).type('harvester')
+        cy.get(this.virtual_page_clusterName).type('harvester21111')
         cy.get(this.virtual_page_createCluster).should('contain', 'Create').click();
         cy.visit(constants.virtualManagePage + '/create#memberRoles');
-        let URL = '';
 
-        cy.get('.copy').invoke('text').then((text) => {
-            
-            URL = text;
-            cy.log(URL);
-            // cy.log(text);
-            // cy.task('setMyUniqueId', text)
-            // let myUniqueId = text;
-            
-            // cy.task('setMyUniqueId', myUniqueId)
-            // cy.wrap(rURL).as('rURL');
-            // cy.log(text)
-        });
+        return cy.get('.copy')
 
+        // cy.get('.copy').invoke('text').then((text) => {
+            
+        //     URL = text;
+        //     cy.log(URL);
+        //     // cy.log(text);
+        //     // cy.task('setMyUniqueId', text)
+        //     // let myUniqueId = text;
+            
+        //     // cy.task('setMyUniqueId', myUniqueId)
+        //     // cy.wrap(rURL).as('rURL');
+        //     // cy.log(text)
+        // });
         // cy.log(URL);
 
         // cy.then(() => {

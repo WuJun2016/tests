@@ -5,7 +5,7 @@ import SettingsPagePo from "@/pageobjects/settings.po";
 import NetworkPage from "@/pageobjects/network.po";
 import type { CypressChainable } from '@/utils/po.types'
 import { Constants } from '../../constants/constants'
-
+import LabeledInputPo from '@/utils/components/labeled-input.po';
 
 const constants = new Constants();
 const rancher = new rancherPage();
@@ -78,7 +78,7 @@ describe('Rancher Integration Test', function() {
 
 
 
-    it.only('Rancher import Harvester', { baseUrl: constants.rancherUrl}, () => {
+    it('Rancher import Harvester', { baseUrl: constants.rancherUrl}, () => {
         // cy.login();
         cy.visit('/');
 
@@ -116,11 +116,18 @@ describe('Rancher Integration Test', function() {
     it.only('Harvester import Rancher', () => {
         cy.login();
         // cy.get('h6').click();
+        settings.goTo();
+        settings.checkIsCurrentPage();
         // cy.get(':nth-child(2) > .list-unstyled > :nth-child(6) > a > .label').click();
         // cy.get('#cluster-registration-url > .btn').click();
         // cy.get('li > span').click();
+        settings.clickMenu('cluster-registration-url', 'Edit Setting', 'cluster-registration-url')
         cy.task('getMyUniqueId').then((myUniqueId) => {
-            console.log('----- harvester testUrl', myUniqueId)
+            const url = (myUniqueId as string).trim();
+            cy.get('input').type(url)
+            const clusterUrl = new LabeledInputPo('.labeled-input', `:contains("Value")`)
+            clusterUrl.input(url)
+            console.log('----- harvester testUrl', typeof myUniqueId, myUniqueId)
         })
         // cy.task('getMyUniqueId').then((myUniqueId) => {
         //    cy.log('${myUniqueId}');

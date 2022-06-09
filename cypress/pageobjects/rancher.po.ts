@@ -108,7 +108,7 @@ export class rancherPage {
         cy.get(this.home_page_virtualManagement).should('contain', 'Virtualization Management').click();
         cy.visit(constants.virtualManagePage)
         cy.get(this.virtual_page_importButton).should('contain', 'Import Existing').click();
-        cy.get(this.virtual_page_clusterName).type('harvester21111')
+        cy.get(this.virtual_page_clusterName).type('harvester8')
         cy.get(this.virtual_page_createCluster).should('contain', 'Create').click();
         cy.visit(constants.virtualManagePage + '/create#memberRoles');
 

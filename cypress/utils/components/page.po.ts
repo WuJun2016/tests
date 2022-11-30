@@ -79,7 +79,11 @@ export class Navbar {
       return cy.contains(new RegExp("^" + parentNav + "$")).click().parentsUntil('.has-children').next().within(($el) => {
         if (parentNavs.length === idx + 1) {
           cy.get('li a').contains(new RegExp("^" + navName + "$")).click();
-          cy.url().should('eq', `${new Navbar().basePath()}/${matchUrl}`);
+
+          cy.location().should(loc => {
+            const deleteHash = loc.href.replace(loc.hash, '');
+            expect(deleteHash).to.eq(`${new Navbar().basePath()}/${matchUrl}`)
+          })
 
           cy.wait(2000); // need to wait here, because when you click on the secondary menu, it will automatically jump to the first position in the secondary menu
           cy.get('a').parentsUntil('body').find('main .outlet header h1').should('be.visible').invoke('text').then((_text) => {
@@ -98,7 +102,11 @@ export class Navbar {
 
     if (parentNavs.length === 0) {
       cy.get("nav a").contains(new RegExp("^" + navName + "$")).click();
-      cy.url().should('eq', `${this.basePath()}/${matchUrl}`);
+      cy.location().should(loc => {
+        const deleteHash = loc.href.replace(loc.hash, '');
+        expect(deleteHash).to.eq(`${this.basePath()}/${matchUrl}`)
+      })
+
       cy.wait(2000);
       cy.get('a').parentsUntil('body').find('main .outlet header h1').should('be.visible').invoke('text').then((_text) => {
         expect(_text.trim()).eq(listPageHeaderText)

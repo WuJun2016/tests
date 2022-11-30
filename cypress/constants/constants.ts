@@ -22,7 +22,7 @@ export const PageUrl = {
 }
 
 export const MenuNav = {
-    dashboard:      ['Dashboard', 'harvester/c/local/harvesterhci.io.dashboard#vm', 'Harvester Cluster: local'],
+    dashboard:      ['Dashboard', 'harvester/c/local/harvesterhci.io.dashboard', 'Harvester Cluster: local'],
     Host:           ['Hosts', 'harvester/c/local/harvesterhci.io.host', 'Hosts'],
     virtaulmachine: ['Virtual Machines', 'harvester/c/local/kubevirt.io.virtualmachine', 'Virtual Machines'],
     volume:         ['Volumes', 'harvester/c/local/harvesterhci.io.volume', 'Volumes'],

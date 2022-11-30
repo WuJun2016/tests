@@ -4,7 +4,7 @@ import { MenuNav } from "@/constants/constants";
 const navBar = new Navbar();
 
 describe("UI url", () => {
-  before(() => {
+  beforeEach(() => {
     cy.login()
   })
 
@@ -15,7 +15,6 @@ describe("UI url", () => {
       navBar.clickMenuNav(...nav);
     })
   })
-
 
   it("Verify the Harvester icon on the left top corner", () => {
     cy.get('.dashboard-content header .menu-spacer').find('img', {timeout: 4000}).then(($el) => {
